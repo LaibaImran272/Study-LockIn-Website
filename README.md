@@ -47,6 +47,3 @@ Place the required `.mp3` files inside the `sounds` folder and make sure their f
 
 The purpose of this project is to create a simple and distraction-free environment where students can manage their study sessions, tasks, and focus time.
 
-## Author
-
-Laiba Imran
