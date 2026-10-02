@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Study Lock-in focus room.">
+  <title>Study Lock-in — Focus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="focus-body" data-theme="default">
+  <nav class="site-nav">
+    <div class="nav-container">
+      <a class="logo" href="index.html">LOCK<span>IN</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="focus.html" class="active">Focus</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="focus-main">
+    <div class="focus-header">
+      <div>
+        <span class="section-kicker">Focus room</span>
+        <h1>Stay with the work.</h1>
+      </div>
+      <div class="live-indicator"><span></span> Your desk is ready</div>
+    </div>
+
+    <div class="dashboard-grid">
+      <section class="panel atmosphere-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="panel-label">01</span>
+            <h2>Atmosphere</h2>
+          </div>
+          <span class="panel-meta">changes the whole room</span>
+        </div>
+        <div class="theme-buttons">
+          <button type="button" class="theme-btn active" data-theme="default"><span>01</span> Paper</button>
+          <button type="button" class="theme-btn" data-theme="ocean"><span>02</span> Tide</button>
+          <button type="button" class="theme-btn" data-theme="forest"><span>03</span> Moss</button>
+          <button type="button" class="theme-btn" data-theme="sunset"><span>04</span> Ember</button>
+          <button type="button" class="theme-btn" data-theme="dark"><span>05</span> Midnight</button>
+        </div>
+      </section>
+
+      <section class="panel timer-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="panel-label">02</span>
+            <h2>Session</h2>
+          </div>
+          <span class="session-status" id="session-status">Ready</span>
+        </div>
+        <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
+        <div class="timer-progress"><span id="timer-progress-bar"></span></div>
+        <div class="timer-controls">
+          <button type="button" class="timer-btn primary" id="start-btn">Start session</button>
+          <button type="button" class="timer-btn secondary" id="pause-btn">Pause</button>
+          <button type="button" class="timer-btn secondary" id="reset-btn">Reset</button>
+        </div>
+        <div class="timer-presets" aria-label="Timer presets">
+          <button type="button" class="preset-btn" data-minutes="15">15 min</button>
+          <button type="button" class="preset-btn active" data-minutes="25">25 min</button>
+          <button type="button" class="preset-btn" data-minutes="45">45 min</button>
+          <button type="button" class="preset-btn" data-minutes="60">60 min</button>
+        </div>
+      </section>
+
+      <section class="panel sound-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="panel-label">03</span>
+            <h2>Soundscape</h2>
+          </div>
+          <span class="panel-meta">optional</span>
+        </div>
+        <div class="sound-controls">
+          <button type="button" class="sound-btn" data-sound="rain">Rain <small>01</small></button>
+          <button type="button" class="sound-btn" data-sound="birds">Birds <small>02</small></button>
+          <button type="button" class="sound-btn" data-sound="guitar">Guitar <small>03</small></button>
+          <button type="button" class="sound-btn" data-sound="soft">Soft <small>04</small></button>
+          <button type="button" class="sound-btn active" data-sound="none">Silent <small>00</small></button>
+        </div>
+        <div class="volume-row">
+          <label for="volume-control">Volume</label>
+          <input id="volume-control" type="range" min="0" max="1" step="0.05" value="0.5">
+        </div>
+        <audio id="background-audio" loop preload="none"></audio>
+      </section>
+
+      <section class="panel quote-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="panel-label">04</span>
+            <h2>Note to self</h2>
+          </div>
+        </div>
+        <blockquote class="quote-display" id="quote-display">
+          “Small progress is still progress.”
+        </blockquote>
+        <button type="button" class="text-btn" id="new-quote-btn">Another note →</button>
+      </section>
+
+      <section class="panel task-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="panel-label">05</span>
+            <h2>Today's list</h2>
+          </div>
+          <span class="panel-meta" id="task-count">0 tasks</span>
+        </div>
+        <form class="task-input" id="task-form">
+          <input type="text" id="task-input" placeholder="What needs your attention?" maxlength="120" autocomplete="off">
+          <button type="submit" class="add-task-btn">Add</button>
+        </form>
+        <ul class="task-list" id="task-list"></ul>
+      </section>
+
+      <section class="panel progress-section">
+        <div class="panel-heading">
+          <div>
+            <span class="panel-label">06</span>
+            <h2>Progress</h2>
+          </div>
+        </div>
+        <div class="progress-stats">
+          <div><span id="sessions-count">0</span><small>sessions</small></div>
+          <div><span id="total-time">0</span><small>minutes</small></div>
+        </div>
+        <button type="button" class="text-btn danger" id="reset-progress-btn">Reset progress</button>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal" id="quote-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-content">
+      <button type="button" class="close-modal" id="close-modal-x" aria-label="Close">×</button>
+      <span class="section-kicker">Session complete</span>
+      <h2 id="modal-title">You showed up. That counts.</h2>
+      <p class="modal-quote" id="modal-quote"></p>
+      <button type="button" class="modal-btn" id="close-modal-btn">Back to the desk</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Study Lock-in</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
